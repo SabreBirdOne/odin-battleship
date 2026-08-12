@@ -1,0 +1,50 @@
+Each battleship takes up a vertical or horizontal stretch of space 
+on a Battleship GameBoard.
+
+The GameBoard class should have:
+
+- this.sideLength: the gameboard is a square of length this.sideLength
+- this.ships: a HashMap containing coordinates to each ship.
+    + Keys: a "tip point pair" string representing the coordinates of 
+    the start and end points of a ship.
+        Form: "startX,startY,endX,endY"
+        Range: in [0, this.sideLength - 1] for each number.
+        Also: can only be placed vertically or horizontally, which means:
+            placed vertically: startX === endX
+            placed horizontally: startyY === endY
+            A ship of length 1 has the same start and end coordinates.
+    
+    + Values: a Ship object.
+
+- this.tipPointsSquareList: a HashMap containing the tip points of a ship mapped to a 
+list of squares that the ship occupies.
+    + Keys: a "tip point pair" string ... (same as in ships)
+    + Values: a list of coordinates that the ship with the tip points spans over
+
+- this.misses: an array of "x,y" coordinates showing missed attacks.
+    Range: in [0, this.sideLength - 1] for each number.
+
+- this.hits: an array of "x,y" coordinates showing hit attacks.
+    Range: in [0, this.sideLength - 1] for each number.
+
+placeShip():
+    - check if given parameters are valid for a ship.
+    - If valid, add tip point pair and ship to this.ships and this.tipPointsSquareList
+
+receiveAttack():
+    - Check every tip point pair: 
+    - if x,y coordinates of the attack is within a list of coordinates a ship occupies:
+        find the ship occupied between the tip point pair and call hit() on it.
+        record a hit in this.hits.
+    - else, record a miss in this.misses.
+
+getMissedAttacks(): returns this.misses
+
+allShipsSunk(): returns true if each and every ship in this.ships.values() isSunk().
+
+Good to have:
+_isInBounds(): check if a coordinate pair is in bounds of the board.
+_isValidShip(): given tip point pair and length, 
+    check if a ship is valid (horizontal or vertical ship, and ship length matches tip point)
+
+
