@@ -1,0 +1,46 @@
+Game objects:
+- Player: contains a GameBoard, accessed via this.board
+- GameBoard: contains Ships inside this.ships
+- Ship: contains ship length and number of hits
+
+UI Design: 2 players
+- Each player gets a DOM box
+    + Player Name is the Box's ID
+    + Player Name and Type displayed as text
+    (+ A Form to placeShip using tipPoint coordinates)
+    + Text explaining grid coordinates. Display flow: square (x = 0, y = 0) is top left, square (x = n, y = n) is bottom right
+    + The GameBoard as a DOM box inside.
+
+- GameBoard DOM Box: 
+    + A grid of n x n Squares
+    + Display: square (x = 0, y = 0) is top left, square (x = n, y = n) is bottom right
+
+- Square UI:
+    + Each Square is a Button so other players can attack this board's squares.
+    + contains isAttacked flag:
+        Helps render the Square and button logic.
+        When game (re)starts, flag is False.
+        When Square button is pressed and flag is False, flag is turned True
+    
+    + contains its own coordinates (x,y) as a data property in the DOM Element.
+        (x,y) is used to run receiveAttack
+
+    + contains isOccupied flag:
+        Helps render the Square
+
+    + Render: 
+        if a Square isAttacked, check getMissedAttacks()
+            if Square's (x,y) is found in getMissedAttacks, display "MISS"
+            else, display "HIT"
+        else, if player has current turn: square isOccupied ? "SHIP" : (Nothing)
+        else (if player does not have current turn): show "????"
+
+UI Flow:
+
+Game starts -> (Ships are placed) -> 
+    render player1's board
+    render player2's board (hidden ships)
+
+player1 presses button of square (x,y) on player2's board:
+    - isAttacked is modified, player's board receiveAttack, 
+    - re-render both boards
