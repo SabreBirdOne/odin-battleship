@@ -1,4 +1,3 @@
-import { node } from "webpack";
 import Node from "./Node";
 
 export default class LinkedList {
