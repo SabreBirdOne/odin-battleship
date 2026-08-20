@@ -1,0 +1,11 @@
+:root {
+    --num-squares-per-side: 10;
+    --square-sidelength: 60px;
+}
+
+.boardUI {
+    display: grid;
+    grid-template: 
+        repeat(var(--num-squares-per-side), var(--square-sidelength)) 
+        / repeat(var(--num-squares-per-side), var(--square-sidelength))
+}
