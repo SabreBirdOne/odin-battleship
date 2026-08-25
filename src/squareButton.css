@@ -1,0 +1,15 @@
+[data-occupied="0"][data-attacked="0"] {
+    background-color: white;
+}
+
+[data-occupied="0"][data-attacked="1"] {
+    background-color: green;
+}
+
+[data-occupied="1"][data-attacked="0"] {
+    background-color: gray;
+}
+
+[data-occupied="1"][data-attacked="1"] {
+    background-color: red;
+}
