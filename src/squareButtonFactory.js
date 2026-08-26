@@ -1,3 +1,5 @@
+import attackSquareHandler from "./attackSquareHandler";
+
 export default function createSquareButton(x, y){
     let squareButton = document.createElement('button');
 
@@ -6,6 +8,8 @@ export default function createSquareButton(x, y){
     squareButton.textContent = `${x},${y}`;
     squareButton.dataset.occupied = 0;
     squareButton.dataset.attacked = 0;
+
+    squareButton.addEventListener("click", attackSquareHandler);
 
     return squareButton;
 }
