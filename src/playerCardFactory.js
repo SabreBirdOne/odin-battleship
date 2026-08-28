@@ -6,6 +6,7 @@ export default function createPlayerCard (player){
     const card = document.createElement("div");
 
     card.dataset.name = player.name;
+    card.classList.add("playerCard");
     
     const playerTag = document.createElement("p");
     const playerType = player.playerType === "real" ? "real" : "CPU"

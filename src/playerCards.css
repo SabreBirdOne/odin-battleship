@@ -3,3 +3,11 @@
     gap: 3rem;
     justify-content: space-evenly;
 }
+
+.playerCard {
+    border-radius: 15px;
+    border: 2px solid black;
+
+    padding: 1rem;
+    background-color: lightcyan;
+}
