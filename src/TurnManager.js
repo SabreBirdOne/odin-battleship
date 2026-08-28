@@ -8,7 +8,9 @@ export default class TurnManager {
     }
 
     static getCurrentPlayerName(){
-        return playerList[this.currentTurn].name;
+        return playerList[this.currentTurn] ? 
+            playerList[this.currentTurn].name :
+            "N/A";
     }
 
     static nextTurn(){
