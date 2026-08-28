@@ -1,6 +1,7 @@
 import { getPlayer } from "./playerLookup"
 import updateBoardUI from "./updateBoardUI"
 import TurnManager from "./TurnManager";
+import updateCurrentPlayerDisplay from "./updateCurrentPlayerDisplay";
 
 export default function attackSquareHandler(event){
     
@@ -15,8 +16,13 @@ export default function attackSquareHandler(event){
     // only receive attack if target player is not the current player
     if (targetPlayerName !== TurnManager.getCurrentPlayerName()){
         player.board.receiveAttack(x, y);
-        updateBoardUI(player.board, playerCard.querySelector(".boardUI"));
         TurnManager.nextTurn();
+
+        updateBoardUI(player.board, playerCard.querySelector(".boardUI"));
+        
+        let currentPlayerDisplay = playerCard.parentNode.parentNode
+            .querySelector(".currentPlayerDisplay");
+        updateCurrentPlayerDisplay(currentPlayerDisplay);
     }
 
     
