@@ -42,3 +42,30 @@ test("Player's gameboard test", ()=>{
     expect(player2.board.allShipsSunk()).toBeTruthy();
 
 })
+
+test("Computer player functions: computerRecordAttack, computerGetNextAttack", ()=>{
+    const player1 = new Player("Strayed");
+    const player2 = new Player("CUBE", 'computer');
+
+    // GameBoards should not interfere with each other
+    player1.board.placeShip(1, 0, 0, 0, 0);
+    player2.board.placeShip(1, 9, 9, 9, 9);
+
+    expect(player1.board.ships.keys()).toContain('0,0,0,0');
+    expect(player1.board.ships.keys()).not.toContain('9,9,9,9');
+
+    expect(player1.board.ships.keys()).toContain('0,0,0,0');
+    expect(player1.board.ships.keys()).not.toContain('9,9,9,9');
+
+    const nextAttack = player2.computerGetNextAttack();
+    expect(player2.computerAttacks).not.toContain(nextAttack);
+
+    const nextAttackArr = nextAttack.split(",");
+
+    player1.board.receiveAttack(nextAttackArr[0], nextAttackArr[1]);
+    player2.computerRecordAttack(nextAttackArr[0], nextAttackArr[1]);
+    
+    expect(player2.computerAttacks).toContain(nextAttack);
+    const nextAttack2 = player2.computerGetNextAttack();
+    expect(player2.computerAttacks).not.toContain(nextAttack2);
+})
