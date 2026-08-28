@@ -1,0 +1,5 @@
+.currentPlayerDisplay {
+    display: flex;
+    gap: 3rem;
+    justify-self: center;
+}
