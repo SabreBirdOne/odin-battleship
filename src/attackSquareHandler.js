@@ -3,6 +3,7 @@ import updateBoardUI from "./updateBoardUI"
 import TurnManager from "./TurnManager";
 import updateCurrentPlayerDisplay from "./updateCurrentPlayerDisplay";
 import computerAttack from "./computerAttack";
+import getWinnersName from "./getWinnersName";
 
 export default function attackSquareHandler(event){
     
@@ -23,15 +24,14 @@ export default function attackSquareHandler(event){
         if (currentPlayer.playerType === "computer"){
             currentPlayer.computerRecordAttack(x, y);
         }
-        targetPlayer.board.receiveAttack(x, y);
-        TurnManager.nextTurn();
-
-        updateBoardUI(targetPlayer.board, playerCard.querySelector(".boardUI"));
-        
-        let currentPlayerDisplay = playerCard.parentNode.parentNode
-            .querySelector(".currentPlayerDisplay");
-        updateCurrentPlayerDisplay(currentPlayerDisplay);
-        
-        computerAttack();
+        targetPlayer.board.receiveAttack(x, y);   
     }
+
+    TurnManager.nextTurn();
+    updateBoardUI(targetPlayer.board, playerCard.querySelector(".boardUI"));
+    let currentPlayerDisplay = playerCard.parentNode.parentNode
+        .querySelector(".currentPlayerDisplay");
+    updateCurrentPlayerDisplay(currentPlayerDisplay);
+    
+    computerAttack();
 }
