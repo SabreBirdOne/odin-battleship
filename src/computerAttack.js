@@ -10,7 +10,10 @@ export default function computerAttack(){
         
         // find next player to attack
         let targetPlayerName = TurnManager.getNextPlayerName();
-        let nextAttack = currentPlayer.computerGetNextAttack().split(",");
+        let nextAttackString = currentPlayer.computerGetNextAttack()
+        let nextAttack = nextAttackString ? 
+            nextAttackString.split(",") :
+            [0, 0];
 
         // find the next squareButton of the player to attack
         let targetPlayerCard = document.querySelector(
