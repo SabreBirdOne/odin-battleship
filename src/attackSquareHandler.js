@@ -2,6 +2,7 @@ import { getPlayer } from "./playerLookup"
 import updateBoardUI from "./updateBoardUI"
 import TurnManager from "./TurnManager";
 import updateCurrentPlayerDisplay from "./updateCurrentPlayerDisplay";
+import computerAttack from "./computerAttack";
 
 export default function attackSquareHandler(event){
     
@@ -10,20 +11,27 @@ export default function attackSquareHandler(event){
     let y = squareButton.dataset.y;
 
     let playerCard = squareButton.parentNode.parentNode;
-    const targetPlayerName = playerCard.dataset.name;
-    let player = getPlayer(targetPlayerName);
+    let targetPlayerName = playerCard.dataset.name;
+    let targetPlayer = getPlayer(targetPlayerName);
+    let currentPlayer = TurnManager.getCurrentPlayer();
 
     // only receive attack if target player is not the current player
-    if (targetPlayerName !== TurnManager.getCurrentPlayerName()){
-        player.board.receiveAttack(x, y);
+    if (targetPlayerName !== TurnManager.getCurrentPlayerName() 
+        && !Number(squareButton.dataset.attacked)
+        && !currentPlayer.board.allShipsSunk()){
+        // if current player is computer player type, record attack
+        if (currentPlayer.playerType === "computer"){
+            currentPlayer.computerRecordAttack(x, y);
+        }
+        targetPlayer.board.receiveAttack(x, y);
         TurnManager.nextTurn();
 
-        updateBoardUI(player.board, playerCard.querySelector(".boardUI"));
+        updateBoardUI(targetPlayer.board, playerCard.querySelector(".boardUI"));
         
         let currentPlayerDisplay = playerCard.parentNode.parentNode
             .querySelector(".currentPlayerDisplay");
         updateCurrentPlayerDisplay(currentPlayerDisplay);
+        
+        computerAttack();
     }
-
-    
 }
