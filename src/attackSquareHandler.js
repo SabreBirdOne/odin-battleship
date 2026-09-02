@@ -3,10 +3,12 @@ import updateBoardUI from "./updateBoardUI"
 import TurnManager from "./TurnManager";
 import updateCurrentPlayerDisplay from "./updateCurrentPlayerDisplay";
 import computerAttack from "./computerAttack";
+import updateWinnerDisplay from "./updateWinnerDisplay";
 import getWinnersName from "./getWinnersName";
 
 export default function attackSquareHandler(event){
-    
+    if (getWinnersName()) return;
+
     let squareButton = event.target;
     let x = squareButton.dataset.x;
     let y = squareButton.dataset.y;
@@ -27,8 +29,12 @@ export default function attackSquareHandler(event){
         targetPlayer.board.receiveAttack(x, y);   
     }
 
-    TurnManager.nextTurn();
     updateBoardUI(targetPlayer.board, playerCard.querySelector(".boardUI"));
+    updateWinnerDisplay();
+
+    if (getWinnersName()) return;
+
+    TurnManager.nextTurn();
     let currentPlayerDisplay = playerCard.parentNode.parentNode
         .querySelector(".currentPlayerDisplay");
     updateCurrentPlayerDisplay(currentPlayerDisplay);
