@@ -1,4 +1,4 @@
-.currentPlayerDisplay {
+.currentPlayerDisplay, .winnerDisplay {
     display: flex;
     gap: 3rem;
     justify-self: center;
