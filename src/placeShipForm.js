@@ -28,11 +28,20 @@ export default function createPlaceShipForm(playerName){
     // Add a handler to the submit ship button
     placeShipButton.addEventListener("click", placeShipButtonHandler);
 
+    const coordinateInputDiv = document.createElement("div");
+    coordinateInputDiv.classList.add("coordinateDiv");
+
     for (const element of [
         startXLabel, startXInput,
         startYLabel, startYInput,
         endXLabel, endXInput,
         endYLabel, endYInput,
+    ]){
+        coordinateInputDiv.appendChild(element);
+    }
+
+    for (const element of [
+        coordinateInputDiv,
         placeShipButton
     ]){
         form.appendChild(element);
