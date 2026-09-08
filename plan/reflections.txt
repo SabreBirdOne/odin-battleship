@@ -1,0 +1,77 @@
+* TDD 
+
+The TDD is pretty straight forward with the Ship, GameBoard and Player classes.
+
+A lot of drawing stuff out elsewhere instead of the DOM when developing the GameBoard 
+class since there was no DOM tree yet to see anything on-screen.
+
+For the UI branch, there isn't a good way to apply TDD coding style to it.
+
+* Game logic
+
+Unlike Tic-Tac-Toe project, I avoided a giant GameEngine class.
+Instead, I broke down the game logic into the TurnManager class and other 
+assorted functions such as getWinnersName. Still feels like a mess though, but 
+at least Single-Responsibility is adhered to a higher extent.
+
+* attackSquareHandler and coupling
+
+Coupling is not super tight. I don't enjoy seeing attackSquareHandler 
+being coupled with so much other code. So much of the game logic relies 
+on players attacking each other's fleet.
+
+Making the computer attack a real player is also a bit challenging. 
+Since I basically have to make JavaScript trigger button events. 
+First time I ever did something like that in a project.
+
+* DOM data-attribute over-reliance?
+
+I still haven't found a graceful way to access DOM elements, other than 
+the basic class, element or id selectors in CSS. I also 
+just used a lot of data-attributes within DOM elements, 
+especially considering that each player has their own playerCard.
+
+* Too many JS files still
+
+Lots of .js files serving as factories or updaters for various DOM elements
+calling upon each other. Seriously, I can't wait to get to the part where 
+frameworks can handle this. 
+
+It's easy to manage while the code is being developed one commit at a time.
+But if I ever revisit this project, this is a lot to take in. I know since
+I have revisited my own takes for previous projects and those repos 
+also have this problem.
+
+* Commit history 
+
+As I write code, I keep finding myself making new files to keep code clean. 
+But the older files depend on the newer ones, so the commit history is kind 
+of reversed: the newer files are committed first, then older files. 
+
+* Conclusion
+
+This project is a really good refresher and workout for 
+my entire full-stack skillset. 
+
+I felt rusty on things like CSS Flexbox and Grid, 
+or Event handling while doing this project. But I feel 
+caught up on the older stuff now, at least a little bit.
+
+Alright, what's next really? Oh man, this is not over yet?!?
+
+--------------------------------------------------------------------------
+
+* Rumination
+
+Life gets in the way. I didn't get a lot of consistent 
+ODIN PROJECT action for the past 3 months. 
+
+Keeping commits small really serves me well in progressing 
+THE ODIN PROJECT in a more sustainable manner as a side hustle.
+
+Still, the more I learn, the more I must maintain 
+to keep being a robust full-stack developer on the side like this. 
+
+Wouldn't be too hard if I straight up have a job doing webdev lol,
+but I'd love it more if such job lets me pace things 
+the way ODIN PROJECT does.
